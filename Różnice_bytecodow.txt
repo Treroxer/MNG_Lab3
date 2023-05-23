@@ -1,0 +1,53 @@
+Opis bytecodu:
+LINENUMBER - opisuje na której linijce kodu jesteśmy
+BITPUSH - Umieszczenie bajtu na stos jako int ; inicjowanie danej zmiennej
+NEWARRAY - Utworzenie nowej tablicy
+DUP - duplikowanie wartości na górze stosu
+ICONST_X - załadowanie wartości int X na stos
+IASTORE - przechowuj int w tablicy
+GETSTATIC - użycie statycznej wartości pola klasy ; wywoływanie klasy wbudowanej , w tym przypadku : System.out.println
+LDC - wrzucenie stałej z puli stałych na stos ; w tym przypadku jest to string jaki wyświetlamy w konsoli 
+INVOKEVIRTUAL - wywołanie metody statycznej i umieszczenie wyniku na stosie ; połączenie z komendą GETSTATIC - wywołanie danej metody z klasy
+ISTORE X - zapisanie wartości int w zmiennej X 
+ILOAD_X - załadowanie wartości int ze zmiennej lokalnej X
+ALOAD_X - załadowanie referencji na stos ze zmiennej lokalnej X
+IF_ICMPNE - jeśli ints nie są równe, rozgałęzienie do instrukcji w branchoffset ; warunek if ,tylko że w tym przypadku zastosowany "w środku pętli for"
+INVOKEDYNAMIC - wywoływanie metody dynamicznej i umieszczenie wyniku na stos
+IINC - zwiększenie zmiennej lokalnej o stały bajt ze znakiem
+GOTO - przejście do innej instrukcji w brachoffset ; w tym przypadku przejście do innej (wcześniejszej) etykiety w celu wykonania pętli
+ISUB - odjęcie wartości int
+---------
+
+L0: Utwórz tablicę liczb całkowitych o rozmiarze 7 i zainicjuj jej elementy określonymi wartościami.
+L1: Wyświetl "Przed sortowaniem:" na konsoli.
+L2: Zainicjuj zmienną na wartość 0.
+L3: Przejdź przez elementy tablicy w pętli.
+L5: Wyświetl bieżący element tablicy na konsoli.
+L6: Inkrementuj zmienną pętli i wróć do L3.
+L4: Wyświetl nową linię na konsoli.
+L7: Zapisz długość tablicy do zmiennej.
+L8: Zainicjuj kolejną zmienną na wartość 0.
+L9: Przejdź ponownie przez elementy tablicy.
+L11: Zainicjuj kolejną zmienną na wartość 0.
+L12: Porównaj elementy tablicy i wykonaj zamianę, jeśli to konieczne.
+L14: Jeśli warunek jest prawdziwy, zamień elementy.
+L16: Przechowaj bieżący element w zmiennej tymczasowej.
+L17: Przenieś następny element na bieżącą pozycję.
+L18: Przechowaj element tymczasowy na następnej pozycji.
+L15: Inkrementuj zmienną pętli i wróć do L12.
+L13: Inkrementuj zewnętrzną zmienną pętli i wróć do L9.
+L10: Wyświetl "Po sortowaniu:" na konsoli.
+L19: Zainicjuj zmienną na wartość 0.
+L20: Przejdź przez posortowane elementy tablicy.
+L22: Wyświetl bieżący posortowany element tablicy na konsoli.
+L23: Inkrementuj zmienną pętli i wróć do L20.
+L21: Wyświetl nową linię na konsoli.
+L24: Zakończ program.
+L25: Zadeklaruj lokalne zmienne dla programu.
+--------
+Różnice między Bytecode'u od Javy oraz Kotlina :
+Przy inicjowaniu zmiennych w Kotlinie nie ma duplikowania wartości na górze stosu (instrukcja DUP). 
+Przy wyświetlanie napisu jest inna kolejność używania instrukcji ( GETSTATIC -> LDC -> INVOKEVIRTUAL ; LDC -> GETSTATIC -> SWAP -> INVOKEVIRTUAL )
+Pętla for jest inaczej inicjowana
+Bytecode w Javie przy pętli for nie używa klas wbudowanych, Kotlin tak ( L7 - StringBuilder (możliwe że chodzi o metode print ale coś dużo tego))
+Reszta kodu wygląda podobnie ale drobne różnice są w kolejności zastosowań konkretnych instrukcji lub ich brak w którymś przypadku 
